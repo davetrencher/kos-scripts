@@ -73,7 +73,9 @@ UNTIL SHIP:APOAPSIS > targetApoapsis {
 
 	IF apoapsis < targetApoapsis {
 
-		SET pitch TO ROUND((90 - (apoapsis / targetApoapsis * 100)),0).
+		SET pitchPercentage TO (apoapsis / targetApoapsis).
+		print pitchPercentage AT (0,12).
+		SET pitch TO ROUND(90 - (90 * pitchPercentage),0).
 		SET mysteer TO HEADING(90, pitch).
 		PRINT pitch AT(24,5).
 	}.
