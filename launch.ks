@@ -10,8 +10,30 @@ CLEARSCREEN.
 
 SET targetApoapsis TO 100000.
 SET circularise TO true.
-SET myThrottle TO 0.7.
-LOCK THROTTLE TO myThrottle.
+
+function logistic {
+	parameter maxEtaApoapsis.
+	parameter L. //max value
+	parameter x0. //x mid point
+	parameter k. //growth factor (steepness)
+
+	local x is maxEtaApoapsis - ETA:APOAPSIS.
+	local midpoint_offset is x - x0.
+
+	if altitude < 1000 or x > 0 {
+		return 1.0.
+	}
+
+	local throttleVal is 1 - (L / (1 + constant:e ^ (k * midpoint_offset))).
+
+	return throttleVal.
+}
+
+SET maxEtaApopsis TO 60.
+SET myThrottle TO logistic(maxEtaApopsis,1,0.5,1).
+
+// 1 / 1 + E ^ -k
+LOCK THROTTLE TO logistic(maxEtaApopsis,1,0.5,1). //myThrottle.
 
 PRINT "Counting down:".
 FROM {local countdown is 10.} 
