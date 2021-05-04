@@ -1,12 +1,17 @@
 WAIT UNTIL SHIP:UNPACKED.
-CLEARSCREEN.
-
-PRINT "Hello Dave..".
 
 IF (STATUS = "prelaunch") {
-    switch to 1.
-    COPYPATH("0:launch.ks","").
-    COPYPATH("0:circularise.ks","").
+    loadMainProgram().
 
-    RUN launch.
+    PRINT "Using standard mission profile".
+    COPYPATH("0:missions/launch_to_standard_orbit.ks","1:launch_mission.ks").
+
+    RUN launch_mission.
+}
+
+function loadMainProgram {
+    switch to 1.
+    COPYPATH("0:lib","").
+    COPYPATH("0:preflight.ks","").
+    COPYPATH("0:launch.ks","").
 }
