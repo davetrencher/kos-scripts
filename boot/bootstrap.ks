@@ -13,5 +13,5 @@ function loadMainProgram {
     switch to 1.
     COPYPATH("0:lib","").
     COPYPATH("0:preflight.ks","").
-    COPYPATH("0:launch.ks","").
+    COPYPATH("0:ascent.ks","").
 }
