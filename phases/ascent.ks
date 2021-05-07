@@ -1,6 +1,6 @@
 CLEARSCREEN.
-RUNPATH("lib/flight_display").
-RUNPATH("lib/flight_control").
+RUNPATH("/lib/flight_display").
+RUNPATH("/lib/flight_control").
 
 SET targetApoapsis TO 100000.
 SET maxEtaApopsis TO 60.

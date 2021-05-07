@@ -1,2 +1,2 @@
-RUN preflight.
-RUN launch.
+RUNPATH("/phases/preflight").
+RUNPATH("/phases/ascent").

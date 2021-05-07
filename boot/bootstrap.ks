@@ -12,6 +12,5 @@ IF (STATUS = "prelaunch") {
 function loadMainProgram {
     switch to 1.
     COPYPATH("0:lib","").
-    COPYPATH("0:preflight.ks","").
-    COPYPATH("0:ascent.ks","").
+    COPYPATH("0:phases","").
 }

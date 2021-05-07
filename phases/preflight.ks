@@ -5,7 +5,7 @@ countdown().
 
 FUNCTION countdown {
     PRINT "Countdown:".
-    FROM {local Tminus is 10.}
+    FROM {local Tminus is 5.}
             UNTIL Tminus = 0 STEP {SET Tminus to Tminus - 1.} DO {
         PRINT "T-" + Tminus.
         WAIT 1.
