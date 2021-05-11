@@ -1,11 +1,11 @@
 function calculate_delta_v_to_raise_apoapsis {
     parameter required_apoapsis.
 
-    local current_radius is SHIP:ORBIT:BODY:RADIUS + PERIAPSIS.
+    local current_radius is BODY:RADIUS + PERIAPSIS.
     local current_semi_major_axis is SHIP:ORBIT:SEMIMAJORAXIS.
     local current_velocity is calculate_velocity(current_radius, current_semi_major_axis).
 
-    local required_semi_major_axis is semi_major_axis(required_apoapsis, PERIAPSIS).
+    local required_semi_major_axis is calculate_semi_major_axis(required_apoapsis, PERIAPSIS).
     local required_velocity is calculate_velocity(current_radius, required_semi_major_axis).
 
     return required_velocity - current_velocity.
@@ -14,21 +14,21 @@ function calculate_delta_v_to_raise_apoapsis {
 
 function calculate_delta_v_to_circularise_apoapsis {
 
-    local current_radius is SHIP:ORBIT:BODY:RADIUS + APOAPSIS.
+    local current_radius is BODY:RADIUS + APOAPSIS.
     local current_semi_major_axis is SHIP:ORBIT:SEMIMAJORAXIS.
     local current_velocity is calculate_velocity(current_radius, current_semi_major_axis).
 
-    local required_semi_major_axis is semi_major_axis(APOAPSIS, APOAPSIS).
+    local required_semi_major_axis is calculate_semi_major_axis(APOAPSIS, APOAPSIS).
     local required_velocity is calculate_velocity(current_radius, required_semi_major_axis).
 
     return required_velocity - current_velocity.
 }
 
-function semi_major_axis {
-    parameter apoapsis.
-    parameter periapsis.
+function calculate_semi_major_axis {
+    parameter required_apoapsis.
+    parameter required_periapsis.
 
-    return SHIP:ORDIT:BODY:RADIUS + ( ( required_apoapsis + required_periapsis ) / 2 ).
+    return BODY:RADIUS + ( ( required_apoapsis + required_periapsis ) / 2 ).
 }
 
 function calculate_velocity {
