@@ -12,6 +12,29 @@ function calculate_delta_v_to_raise_apoapsis {
 
 }
 
+function calculate_delta_v_to_raise_periapsis {
+    parameter required_periapsis.
+
+    local current_radius is BODY:RADIUS + APOAPSIS.
+    local current_semi_major_axis is SHIP:ORBIT:SEMIMAJORAXIS.
+    local current_velocity is calculate_velocity(current_radius, current_semi_major_axis).
+
+    local required_radius is current_radius.
+    local required_semi_major_axis is calculate_semi_major_axis(APOAPSIS, required_periapsis).
+    local required_velocity is calculate_velocity(required_radius, required_semi_major_axis).
+
+    PRINT "current_radius: " +current_radius.
+    PRINT "current_semi_major_axis: " +current_semi_major_axis.
+    PRINT "current_velocity: " +current_velocity.
+
+    PRINT "required_radius: " +current_radius.
+    PRINT "required_semi_major_axis: " +required_semi_major_axis.
+    PRINT "required_velocity: " +required_velocity.
+
+    return required_velocity - current_velocity.
+
+}
+
 function calculate_delta_v_to_circularise_apoapsis {
 
     local current_radius is BODY:RADIUS + APOAPSIS.

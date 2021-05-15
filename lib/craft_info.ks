@@ -24,5 +24,5 @@ function get_total_vacuum_isp {
         SET visp to visp + engine:VISP.
     }
 
-    return visp.
+    return visp / engineList:LENGTH.
 }
