@@ -93,12 +93,10 @@ function circularise {
     PRINT "should break: " +manouver_node:deltav:mag > 0.1 AT(0,22).
 
 
-    UNTIL manouver_node:deltav:mag < 0.1 {
+    UNTIL ( vdot(deltav0,manouver_node:deltav) < 0.5 ) {
         SET burn_throttle to 1.0.
         PRINT "node deltav " +manouver_node:deltav AT(0,20).
         PRINT "node deltav:mag " +manouver_node:deltav:mag AT(0,21).
-        PRINT "should break: " +manouver_node:deltav:mag < 0.1 AT(0,22).
-        PRINT "should break 2: " +vdot(deltav0,manouver_node:deltav) < 0.1 AT(0,23).
         WAIT 0.001.
     }
 
