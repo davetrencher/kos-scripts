@@ -23,15 +23,12 @@ UNTIL SHIP:APOAPSIS > targetApoapsis {
 		//also needs testing at higher level.
 		SET pitchPercentage TO (apoapsis / targetApoapsis).
 		SET pitch TO ROUND(90 - (90 * pitchPercentage),0).
-		print pitchPercentage AT (0,12).
 		PRINT pitch AT(24,5).
 
 		// this is quicker but requires circularisation code as it cuts out when it reaches target apoapsis
 		SET altitudePitchPercentage TO (altitude / targetApoapsis).
 		SET altitudePitch to ROUND(90 - (90 * altitudePitchPercentage),0).
-		print altitudePitch AT (0,13).
 
-		//SET mysteer TO HEADING(90, pitch).
 		SET mysteer TO HEADING(90, altitudePitch).
 
 	}.
