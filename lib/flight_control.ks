@@ -23,6 +23,7 @@ function perform_manouver {
 
     SET delta_v to manouver_node:DELTAV:MAG.
     SET burn_duration to calculate_burn_time(delta_v,get_total_vacuum_isp()).
+    PRINT "BURN DURATION: " +burn_duration.
     SET time_until_burn TO manouver_node:ETA - ( burn_duration / 2 ).
 
     SET manouver_node_direction TO manouver_node:deltav:direction.
@@ -48,3 +49,4 @@ function perform_manouver {
     REMOVE manouver_node.
 
 }
+
