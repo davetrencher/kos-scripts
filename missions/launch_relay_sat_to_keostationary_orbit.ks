@@ -46,7 +46,7 @@ function raise_apoapsis_to_keostationary {
 function raise_orbital_period {
     parameter orbital_period_secs.
 
-    SET required_periapsis TO calculate_periapsis_for_orbital_period(orbital_period_secs).
+    SET required_periapsis TO calculate_periapsis_for_orbital_period(ALTITUDE_KEOSTATIONARY,PERIAPSIS,orbital_period_secs, BODY).
     SET delta_v TO calculate_delta_v_to_raise_periapsis(required_periapsis).
     SET manouver_execute_time TO ETA:APOAPSIS.
     SET manouver_node TO NODE( Timespan(0,0,0,0,manouver_execute_time), 0, 0, delta_v ).

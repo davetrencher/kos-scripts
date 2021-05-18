@@ -29,17 +29,20 @@ function calculate_delta_v_to_raise_periapsis {
 
 //https://www.youtube.com/watch?v=xNiFcI-fcmA
 function calculate_periapsis_for_orbital_period {
+    parameter current_apoapsis.
+    parameter current_periapsis.
     parameter required_orbital_period.
+    parameter required_body.
 
-    SET required_semimajor_axis TO ( ( required_orbital_period * SQRT(BODY:MU)) / ( 2 * CONSTANT:PI ) ) ^ 0.66.
-    SET apoapsis_radius TO BODY:RADIUS + APOAPSIS.
+    SET required_semimajor_axis TO ( ( required_orbital_period * SQRT(required_body:MU) ) / ( 2 * CONSTANT:PI ) ) ^ ( 2 / 3 ).
+    SET apoapsis_radius TO required_body:RADIUS + current_apoapsis.
 
-    CLEARSCREEN.
+    PRINT "MU: " + required_body:MU.
+    PRINT "Required Orbital Period: " + required_orbital_period.
     PRINT "Required semimajor axis: " + required_semimajor_axis.
-    PRINT "Apoapsis radius: " + apoapsis_radius.
 
-    SET required_orbit_radius TO ( 2 * required_semimajor_axis - apoapsis_radius ) / 2.
-    SET required_periapsis TO required_orbit_radius - BODY:RADIUS.
+    SET required_orbit_radius TO ( ( 2 * required_semimajor_axis ) - apoapsis_radius ).
+    SET required_periapsis TO required_orbit_radius - required_body:RADIUS.
 
     PRINT "Required orbit radius: " + required_orbit_radius.
     PRINT "Required orbit periapsis: " + required_periapsis.
