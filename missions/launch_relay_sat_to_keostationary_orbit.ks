@@ -7,7 +7,11 @@ RUNPATH("/lib/flight_control").
 SET number_of_satellites TO 3.
 
 RUNPATH("/phases/preflight").
-RUNPATH("/phases/ascent").
+
+RUNPATH("/lib/flight_display").
+RUNPATH("/lib/flight_control").
+
+ascent(100000, 90).
 
 deploy_fairing().
 WAIT 2.

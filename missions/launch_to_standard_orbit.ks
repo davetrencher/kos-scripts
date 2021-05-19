@@ -1,3 +1,6 @@
 RUNPATH("/phases/preflight").
-RUNPATH("/phases/ascent").
 
+RUNPATH("/lib/flight_display").
+RUNPATH("/lib/flight_control").
+
+ascent(100000, 90).
