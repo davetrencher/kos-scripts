@@ -88,3 +88,38 @@ function calculate_burn_time {
     return burn_time.
 
 }
+
+function calculate_phase_angle {
+    parameter target.
+
+    SET angle1 TO ORBIT:LAN + ORBIT:ARGUMENTOFPERIAPSIS + ORBIT:TRUEANOMALY.
+    SET angle2 TO TARGET:ORBIT:LAN + TARGET:ORBIT:ARGUMENTOFPERIAPSIS + TARGET:ORBIT:TRUEANOMALY.
+
+    SET angle3 TO angle2 - angle1.
+
+    SET angle3 TO angle3 - 360 * floor(angle3/360).
+
+    return angle3.
+}
+
+function calculate_orbit_radius {
+    parameter orbit.
+
+    return ( orbit:APOAPSIS + orbit:PERIAPSIS ) + orbit:BODY:RADIUS.
+}
+
+function calculate_orbit_period {
+    parameter semimajoraxis.
+    parameter mu.
+
+    return SQRT( ( 4 * ( CONSTANT:PI ^ 2 ) ) * ( semimajoraxis ^ 3 ) / mu ).
+
+}
+
+function calculate_velocity_transfer {
+    parameter semimajoraxis_transfer_orbit.
+    parameter transfer_orbit_period.
+    parameter r.
+
+    return ( ( 2 * CONSTANT:PI ) * semimajoraxis_transfer_orbit / transfer_orbit_period ) * SQRT( ( ( 2 * semimajoraxis_transfer_orbit ) / r ) - 1).
+}
