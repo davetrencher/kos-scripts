@@ -105,7 +105,10 @@ function calculate_phase_angle {
 function calculate_orbit_radius {
     parameter orbit.
 
-    return ( orbit:APOAPSIS + orbit:PERIAPSIS ) + orbit:BODY:RADIUS.
+    SET average_height TO ( orbit:APOAPSIS + orbit:PERIAPSIS ) / 2.
+    PRINT "avg height " +average_height.
+
+    return average_height + orbit:BODY:RADIUS.
 }
 
 function calculate_orbit_period {
