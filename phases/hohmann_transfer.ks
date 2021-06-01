@@ -19,8 +19,10 @@ SET target_theta TO ( transfer_time / target:ORBIT:PERIOD ) * 360.
 SET required_phase_angle TO 180 - target_theta.
 
 //work out ejection angle
+
 //work out time until transfer
 //work out deltav required for transfer.
+SET transfer_deltav TO calculate_velocity_transfer(
 //work out any inclination change - later
 
 CLEARSCREEN.
